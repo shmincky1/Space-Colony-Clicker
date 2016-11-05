@@ -8,12 +8,13 @@ class DotAccessibleDict(dict):
 ALL_WORLDS=object()
 
 class Currency(object):
-	def __init__(self, name, worlds=ALL_WORLDS, amount=0, clamp_to_zero=False, round_to=0):
+	def __init__(self, name, worlds=ALL_WORLDS, amount=0, clamp_to_zero=False, round_to=0, postfix=""):
 		self.name=name
 		self.worlds=worlds
 		self.amount=amount
 		self.clamp_to_zero=clamp_to_zero
 		self.round_to=round_to
+		self.postfix=postfix
 
 	def in_world(self, w):
 		return self.worlds==ALL_WORLDS or w in self.worlds
@@ -44,7 +45,10 @@ class Currency(object):
 	def __eq__(self, v): return self.amount==v
 
 	def format_amount(self):
-		return int(self.amount) if self.round_to==0 else round(self.amount, self.round_to)
+		return str(int(self.amount) if self.round_to==0 else round(self.amount, self.round_to))
+
+	def format(self):
+		return self.name+": "+self.format_amount()+self.postfix
 
 class Renderer(object):
 	def __init__(self, game):
@@ -62,6 +66,7 @@ class Building(object):
 	required_upgrades=[]
 	worlds=[]
 	buy_costs={}
+	produces={}
 	def __init__(self, game):
 		self.game=game
 		self.built=0

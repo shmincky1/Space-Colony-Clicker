@@ -1,0 +1,29 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Space Colony Clicker</title>
+    <link rel="stylesheet" href="css/master.css" media="screen">
+    <link rel="stylesheet" href="css/mobile.css" media="handheld">
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <!--<script src="brython/brython.js"></script>
+    <script type="text/python" src="main.py"></script>-->
+  </head>
+  <body onload="brython(1)">
+    <div id="mobilebork">
+      <h1>Sorry! This game does not currently work on mobile.</h1>
+    </div>
+    <div id="main">
+      <div id="colonies">
+        <div class="world-bar-item">
+          <p class="world-text">
+            Worlds
+            <br>
+          </p>
+        </div>
+      <div id="world_earth" class="world-bar-item"><img src="img/earth-icon.png" title="Earth"><p class="world-text">Earth</p></div><div id="world_spacestation" class="world-bar-item"><img src="img/space-station-icon.png" title="Station"><p class="world-text">Station</p></div><div id="world_moon" class="world-bar-item"><img src="img/moon-icon.png" title="Moon"><p class="world-text">Moon</p></div><div id="world_mars" class="world-bar-item world-button-enabled"><img src="img/mars-icon.png" title="Mars"><p class="world-text">Mars</p></div></div>
+      <div id="world-container-container">
+
+      <div class="world-container world-container-hidden" id="world-container_earth"><div id="resources"><b>Resources availible on Earth</b><hr><div class="currency-holder-holder"><div class="currency-holder currency-holder_science">Science: 0</div><div class="currency-holder currency-holder_opinion">Public Opinion: 189</div><div class="currency-holder currency-holder_usd">Money: 1000000$</div></div></div><div id="buildings"><div class="building-holder-holder"><div class="building-holder building-holder_aldrincycler">Aldrin Cycler Ship: 0</div><div class="building-holder building-holder_earthlaunchpad">Launch Pad: 0</div><div class="building-holder building-holder_rndoffice">R&amp;D Office: 0</div><div class="building-holder building-holder_proffice">PR Office: 1</div></div></div><div id="upgrades"></div><div id="visualize"><h1>earth</h1><img src="img/earth-icon.png"></div></div><div class="world-container world-container-hidden" id="world-container_spacestation"><div id="resources"><b>Resources availible on Station</b><hr><div class="currency-holder-holder"><div class="currency-holder currency-holder_science">Science: 0</div><div class="currency-holder currency-holder_usd">Money: 1000000$</div></div></div><div id="buildings"><div class="building-holder-holder"><div class="building-holder building-holder_stationmodule">Space Station Module: 0</div></div></div><div id="upgrades"></div><div id="visualize"><h1>spacestation</h1><img src="img/space-station-icon.png"></div></div><div class="world-container world-container-hidden" id="world-container_moon"><div id="resources"><b>Resources availible on Moon</b><hr><div class="currency-holder-holder"><div class="currency-holder currency-holder_science">Science: 0</div><div class="currency-holder currency-holder_usd">Money: 1000000$</div></div></div><div id="buildings"><div class="building-holder-holder"></div></div><div id="upgrades"></div><div id="visualize"><h1>moon</h1><img src="img/moon-icon.png"></div></div><div class="world-container world-container-enabled" id="world-container_mars"><div id="resources"><b>Resources availible on Mars</b><hr><div class="currency-holder-holder"><div class="currency-holder currency-holder_science">Science: 0</div><div class="currency-holder currency-holder_usd">Money: 1000000$</div></div></div><div id="buildings"><div class="building-holder-holder"><div class="building-holder building-holder_aldrincycler">Aldrin Cycler Ship: 0</div></div></div><div id="upgrades"></div><div id="visualize"><h1>mars</h1><img src="img/mars-icon.png"></div></div></div>
+    </div>
+  
+
+</body></html>
