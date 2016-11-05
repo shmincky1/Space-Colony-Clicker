@@ -44,11 +44,14 @@ class Currency(object):
 	def __le__(self, v): return self.amount<=v
 	def __eq__(self, v): return self.amount==v
 
-	def format_amount(self):
-		return str(int(self.amount) if self.round_to==0 else round(self.amount, self.round_to))
+	def round_amount(self):
+		return int(self.amount) if self.round_to==0 else round(self.amount, self.round_to)
 
-	def format(self):
-		return self.name+": "+self.format_amount()+self.postfix
+	def format_name(self):
+		return self.name+": "
+
+	def format_amount(self):
+		return str(self.round_amount())+self.postfix
 
 class Renderer(object):
 	def __init__(self, game):
@@ -62,7 +65,7 @@ class Renderer(object):
 
 class Building(object):
 	name=""
-	desc=""
+	desc="(no desc)"
 	required_upgrades=[]
 	worlds=[]
 	buy_costs={}
@@ -75,16 +78,14 @@ class Building(object):
 		return self.worlds==ALL_WORLDS or w in self.worlds
 
 	def can_buy(self):
-		return all(game.upgrades[name] for name in self.required_upgrades) and all(game.currencies[name]>=cost for name,cost in self.buy_costs.items())
+		return all(self.game.upgrades[name] for name in self.required_upgrades) and all(self.game.currencies[name]>=cost for name,cost in self.buy_costs.items())
 
 	@property
 	def buy_desc(self):
 		ret="Required Upgrades: "
-		for req in self.required_upgrades:
-			ret+=", ".join(self.required_upgrades)
+		ret+=", ".join(self.required_upgrades) or "None"
 		ret+="\nCosts: "
-		for name, amt in self.buy_costs.items():
-			ret+=", ".join(name+": "+amt)
+		ret+=", ".join(name+" -> "+str(amt) for name, amt in self.buy_costs.items()) or "None"
 		return ret
 
 	def on_buy(self):

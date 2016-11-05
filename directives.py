@@ -3,19 +3,37 @@ from browser import html
 
 class BuildingsRenderer(game.Renderer):
 	def setup(self, container):
+		def _make_handler(building):
+			def _handle(e):
+				self.game.buildings[building].on_buy()
+			return _handle
+
 		self.divs={}
+		self.buybuttons={}
 		for key, value in self.game.buildings.items():
 			self.divs[key]=[]
+			self.buybuttons[key]=[]
 			for ele in container.get(selector=".building-holder-holder"):
 				if value.in_world(ele.parent.parent.id.split("_")[1]):
-					div=html.DIV(Class="building-holder building-holder_"+key)
+					parent=html.DIV(html.SPAN(value.name), Class="building-holder building-holder_"+key)
+					div=html.SPAN("Loading...", Class="building-count")
+					parent<=div
+					desc=html.DIV(value.desc+"\n"+value.buy_desc, Class="building-desc")
+					button=html.BUTTON("Buy!", disabled=True)
+					self.buybuttons[key].append(button)
+					button.bind("click", _make_handler(key))
+					desc<=html.BR()
+					desc<=button
+					parent<=desc
 					self.divs[key].append(div)
-					ele<=div
+					ele<=parent
 
 	def update(self, container):
 		for key, value in self.game.buildings.items():
 			for ele in self.divs[key]:
-				ele.text=value.name+": "+str(value.built)
+				ele.text=str(value.built)
+			for ele in self.buybuttons[key]:
+				ele.disabled=not value.can_buy()
 
 class CurrenciesRenderer(game.Renderer):
 	def setup(self, container):
@@ -26,15 +44,17 @@ class CurrenciesRenderer(game.Renderer):
 			self.divs[key]=[]
 			for container in currency_holders:
 				if value.in_world(container.parent.parent.id.split("_")[1]):
-					div=html.DIV("asd", Class="currency-holder currency-holder_"+key)
+					parent=html.DIV(html.SPAN(value.format_name()), Class="currency-holder currency-holder_"+key)
+					div=html.SPAN("Loading...", Class="currency-value")
+					parent<=div
 					self.divs[key].append(div)
-					container<=div
+					container<=parent
 		print(self.divs)
 
 	def update(self, container):
 		for key, value in self.game.currencies.items():
 			for container in self.divs[key]:
-				container.text=value.format()
+				container.text=value.format_amount()
 
 class WorldsRenderer(game.Renderer):
 	def setup(self, container):
@@ -70,6 +90,8 @@ class FramingRenderer(game.Renderer):
 			resources<=html.DIV(Class="currency-holder-holder")
 			world_container<=resources
 			buildings=html.DIV(id="buildings")
+			buildings<=html.B("Buildings on "+value.name)
+			buildings<=html.HR()
 			buildings<=html.DIV(Class="building-holder-holder")
 			world_container<=buildings
 			world_container<=html.DIV(id="upgrades")

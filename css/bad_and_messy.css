@@ -1,0 +1,19 @@
+.currency-value{
+	float: right;
+}
+
+.building-count{
+	float: right;
+}
+
+.building-desc{
+	border-width: 1px;
+	border-style: solid;
+	display:none;
+	white-space: pre-wrap;
+	font-family: arial;
+}
+
+.building-holder:hover > .building-desc{
+	display: block !important;
+}

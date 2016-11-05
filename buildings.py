@@ -21,12 +21,12 @@ class RnDOffice(game.Building):
 
 class EarthLaunchPad(game.Building):
 	name="Launch Pad"
-	buy_costs={"usd":10000}
+	buy_costs={"usd":10000, "opinion":10}
 	worlds=["earth"]
 
 class StationModule(game.Building):
 	name="Space Station Module"
-	buy_costs={"lifter":1, "usd":10000}
+	buy_costs={"usd":10000}
 	produces={"science":0.1*PER_SECOND}
 	worlds=["spacestation"]
 

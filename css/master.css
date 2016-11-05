@@ -9,9 +9,10 @@
   margin: 0px;
 }
 
-div#resources, div#buildings, div#upgrades, div#visualize {
-  vertical-align: top;
-  margin: 1px;
+div.world-container > div{
+  border-width:1px;
+  border-style:solid;
+  border-color:white;
 }
 
 p {
@@ -73,7 +74,6 @@ body {
 }
 
 #resources {
-  margin: 0px;
   background-color: black;
   float: left;
   height: 60%;
@@ -86,7 +86,6 @@ body {
 }
 
 #buildings {
-  margin: 0px;
   background-color: black;
   float: left;
   height: 60%;
@@ -99,7 +98,6 @@ body {
 }
 
 #upgrades {
-  margin: 0px;
   background-color: black;
   height: 60%;
   min-height: 200px;
@@ -111,7 +109,6 @@ body {
 }
 
 #visualize {
-  margin: 0px;
   background-color: black;
   height: 40%;
   min-height: 200px;
