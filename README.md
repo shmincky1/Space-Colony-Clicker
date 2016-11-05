@@ -1,1 +1,1 @@
-# space-colony-clicker
+# Space-Colony-Clicker
